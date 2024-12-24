@@ -1,0 +1,119 @@
+/* CSS via ID */
+
+#BackgroundColour {
+	background-color: #e0e0e0;
+	height: 100%;
+	width: 100%;
+}
+
+#search {
+	animation-name: search;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
+	animation-duration: 0.25s;
+}
+
+#img1 {
+	transition: opacity 0.5s;
+}
+
+#img2 {
+	transition: opacity 0.5s;
+}
+
+#img3 {
+	transition: opacity 0.5s;
+}
+
+#img4 {
+	transition: opacity 0.5s;
+}
+
+#img5 {
+	transition: opacity 0.5s;
+}
+
+#img6 {
+	transition: opacity 0.5s;
+}
+
+#logo:hover {
+	filter: invert(19%) sepia(92%) saturate(5607%) hue-rotate(356deg) brightness(100%) contrast(120%);
+}
+
+/* CSS via Class */
+
+.text-shadow {
+	text-shadow: 0px 0px 8px black;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.overlay:hover {
+	opacity: 1;
+}
+
+.overlay-stop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.product-fade-in {
+	animation-name: fadeIn;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
+	animation-duration: 0.5s;
+}
+
+.product-fade-out {
+	animation-name: fadeIn;
+	animation-timing-function: ease-in;
+	animation-fill-mode: backwards;
+	animation-duration: 0.5s;
+}
+
+/* Keyframes for animations */
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0%;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
+@keyframes search {
+	0% {
+		width: 0%;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+/* Imported font */
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://fonts.gstatic.com/s/materialicons/v89/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
