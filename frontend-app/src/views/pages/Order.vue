@@ -13,7 +13,7 @@
             <!-- Product Image -->
             <router-link :to="'/Product/' + item.product_id" class="w-full h-full flex items-center">
               <img class="w-auto h-full max-h-[14.25rem] max-w-full"
-                v-bind:src="'/src/resources/Sneaker-Images/' + products[item.product_id - 1].product_code + '.png'">
+                v-bind:src="currentImageUrl + 'Sneaker-Images/' + products[item.product_id - 1].product_code + '.png'">
             </router-link>
             <!-- Product Details -->
             <div class="w-full h-full">
@@ -192,6 +192,8 @@ export default {
       ],
       NewCardDiv: false,
       NewAddressDiv: false,
+      imageUrlPrimary: "/src/resources/Sneaker-Images/DZ5485-612.png", // Replace with your primary image path
+      currentImageUrl: "",
     };
   },
   computed: {
@@ -225,6 +227,8 @@ export default {
 
     // Gets the user ID from the account logged in
     this.loggedin = localStorage.getItem('user_id');
+
+    this.checkImage(this.imageUrlPrimary);
 
     // Fetches all products
     productsService.getAll()
@@ -310,6 +314,18 @@ export default {
 
       // Simulates a click on the link to trigger the download
       link.click();
+    },
+    checkImage(primaryUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // If the primary image loads successfully, use it
+        this.currentImageUrl = "/src/resources/";
+      };
+      img.onerror = () => {
+        // If the primary image fails to load, use the fallback
+        this.currentImageUrl = "/helios-sole/assets/";
+      };
+      img.src = primaryUrl;
     }
   },
   components: {

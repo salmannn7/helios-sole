@@ -22,7 +22,7 @@
             :key="product.product_id" :style="{ 'animation-delay': `${index * 0.1}s` }">
             <!-- Product image -->
             <img class="w-full h-auto max-h-full"
-              :src="'/src/resources/Sneaker-Images/' + product.product_code + '.png'">
+              :src="currentImageUrl + 'Sneaker-Images/' + product.product_code + '.png'">
             <!-- Overlay with product details -->
             <div class="overlay">
               <!-- Product details -->
@@ -109,7 +109,7 @@
                         <!-- Product image -->
                         <router-link :to="'/Product/' + order.product_id" class="w-auto h-full flex items-center mr-2">
                           <img class="w-auto h-32 max-w-full"
-                            v-bind:src="'/src/resources/Sneaker-Images/' + products[order.product_id - 1].product_code + '.png'">
+                            v-bind:src="currentImageUrl + 'Sneaker-Images/' + products[order.product_id - 1].product_code + '.png'">
                         </router-link>
                         <!-- Product details -->
                         <div class="text-start">
@@ -218,6 +218,8 @@ export default {
       submittedCarousel: false,
       iter: 0,
       windowShow: 0,
+      imageUrlPrimary: "/src/resources/Sneaker-Images/DZ5485-612.png", // Replace with your primary image path
+      currentImageUrl: "",
     };
   },
   mounted() {
@@ -248,6 +250,8 @@ export default {
 
     // Gets the user ID from the account logged in
     this.loggedin = localStorage.getItem('user_id');
+
+    this.checkImage(this.imageUrlPrimary);
 
     // Fetches the user's first name
     usersService.getOne(this.loggedin)
@@ -434,6 +438,18 @@ export default {
         this.windowShow = window;
       }
     },
+    checkImage(primaryUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // If the primary image loads successfully, use it
+        this.currentImageUrl = "/src/resources/";
+      };
+      img.onerror = () => {
+        // If the primary image fails to load, use the fallback
+        this.currentImageUrl = "/helios-sole/assets/";
+      };
+      img.src = primaryUrl;
+    }
   },
   components: {
     CustomAlert,

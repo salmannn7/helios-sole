@@ -165,7 +165,7 @@
           v-for="(product, index) in products" :key="product.product_id"
           :style="{ 'animation-delay': `${index * 0.1}s` }">
           <!-- Product image -->
-          <img class="w-full h-auto max-h-full" :src="'/src/resources/Sneaker-Images/' + product.product_code + '.png'">
+          <img class="w-full h-auto max-h-full" :src="currentImageUrl + 'Sneaker-Images/' + product.product_code + '.png'">
           <!-- Details overlay -->
           <div class="overlay">
             <div class="w-full h-full grid grid-rows-9 p-4 text-white">
@@ -285,11 +285,15 @@ export default {
       sortOpt: 1,
       filtersTags: "",
       TotalProd: 0,
+      imageUrlPrimary: "/src/resources/Sneaker-Images/DZ5485-612.png", // Replace with your primary image path
+      currentImageUrl: "",
     };
   },
   mounted() {
     // Gets the user ID from the account logged in
     this.loggedin = localStorage.getItem('user_id');
+
+    this.checkImage(this.imageUrlPrimary);
 
     // All the methods initialised
     this.totalProducts();
@@ -763,6 +767,18 @@ export default {
           this.TotalProd = TotalProd.length;
         })
         .catch(error => this.error = error)
+    },
+    checkImage(primaryUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // If the primary image loads successfully, use it
+        this.currentImageUrl = "/src/resources/";
+      };
+      img.onerror = () => {
+        // If the primary image fails to load, use the fallback
+        this.currentImageUrl = "/helios-sole/assets/";
+      };
+      img.src = primaryUrl;
     }
   },
 };

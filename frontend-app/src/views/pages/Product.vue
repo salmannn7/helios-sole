@@ -16,7 +16,7 @@
           </div>
           <!-- Product image -->
           <img class="w-auto h-full max-h-90 max-w-full"
-            v-bind:src="'/src/resources/Sneaker-Images/' + product.product_code + '.png'">
+            v-bind:src="currentImageUrl + 'Sneaker-Images/' + product.product_code + '.png'">
           <!-- Product details -->
           <div class="self-start p-2">
             <p class="text-lg">{{ product.type + "'s Shoes" }}</p>
@@ -96,7 +96,7 @@
               :style="{ 'animation-delay': `${index * 0.1}s` }">
               <!-- Product image -->
               <img class="w-full h-auto max-h-full"
-                :src="'/src/resources/Sneaker-Images/' + product.product_code + '.png'">
+                :src="currentImageUrl + 'Sneaker-Images/' + product.product_code + '.png'">
               <!-- Overlay with product details -->
               <div class="overlay" :class="{ 'overlay-stop': product.product_id == $route.params.id }">
                 <!-- Product details -->
@@ -210,6 +210,8 @@ export default {
       disableButton: false,
       iter: 0,
       submittedCarousel: false,
+      imageUrlPrimary: "/src/resources/Sneaker-Images/DZ5485-612.png", // Replace with your primary image path
+      currentImageUrl: "",
     };
   },
   mounted() {
@@ -224,6 +226,8 @@ export default {
     // Gets the user ID from the account logged in
     this.loggedin = localStorage.getItem('user_id');
     this.loggedin = parseInt(this.loggedin) // Makes User ID into an integer
+
+    this.checkImage(this.imageUrlPrimary);
 
     // Fetches the details of the product based on the route parameter
     productsService.getOne(this.$route.params.id)
@@ -509,6 +513,18 @@ export default {
           });
       }
     },
+    checkImage(primaryUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // If the primary image loads successfully, use it
+        this.currentImageUrl = "/src/resources/";
+      };
+      img.onerror = () => {
+        // If the primary image fails to load, use the fallback
+        this.currentImageUrl = "/helios-sole/assets/";
+      };
+      img.src = primaryUrl;
+    }
   },
   components: {
     CustomAlert

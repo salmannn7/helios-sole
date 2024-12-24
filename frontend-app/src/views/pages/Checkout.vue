@@ -11,7 +11,7 @@
             <!-- Product image -->
             <router-link :to="'/Product/' + item.product_id" class="w-full h-full flex items-center">
               <img class="w-auto h-full max-h-[14.25rem] max-w-full"
-                v-bind:src="'/src/resources/Sneaker-Images/' + products[item.product_id - 1].product_code + '.png'">
+                v-bind:src="currentImageUrl + 'Sneaker-Images/' + products[item.product_id - 1].product_code + '.png'">
             </router-link>
             <!-- Product details -->
             <div class="w-full h-full">
@@ -424,6 +424,8 @@ export default {
       ],
       NewCardDiv: false,
       NewAddressDiv: false,
+      imageUrlPrimary: "/src/resources/Sneaker-Images/DZ5485-612.png", // Replace with your primary image path
+      currentImageUrl: "",
     };
   },
   computed: {
@@ -457,6 +459,8 @@ export default {
 
     // Gets the user ID from the account logged in
     this.loggedin = localStorage.getItem('user_id');
+
+    this.checkImage(this.imageUrlPrimary);
 
     // Fetches countries for selection
     this.loadCountries();
@@ -492,8 +496,11 @@ export default {
     // Fetches countries for selection use asynchronously
     async loadCountries() {
       try {
-        // Retrieves the contents of the Countries.txt file
-        const response = await fetch('/src/resources/Text/Countries.txt');
+        // Dynamically determine the base URL for the countries file
+        const baseUrl = await this.checkFileAvailability("/src/resources/Text/Countries.txt") ? "/src/resources/Text/" : "/helios-sole/assets/Text/";
+
+        // Construct the full URL for fetching the countries
+        const response = await fetch(baseUrl + "Countries.txt");
 
         // Logs the response status to the console
         console.log('Response status:', response.status);
@@ -508,6 +515,15 @@ export default {
         this.countries = countries;
       } catch (error) {
         console.error('Error loading countries:', error);
+      }
+    },
+    async checkFileAvailability(url) {
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok; // Returns true if file exists, otherwise false
+      } catch (error) {
+        console.error('Error checking file availability:', error);
+        return false; // Return false if there's an error
       }
     },
     // Updates the total cost of the order based on the selected delivery option
@@ -676,6 +692,18 @@ export default {
         .catch(error => {
           console.error("Error during checkout:", error);
         });
+    },
+    checkImage(primaryUrl) {
+      const img = new Image();
+      img.onload = () => {
+        // If the primary image loads successfully, use it
+        this.currentImageUrl = "/src/resources/";
+      };
+      img.onerror = () => {
+        // If the primary image fails to load, use the fallback
+        this.currentImageUrl = "/helios-sole/assets/";
+      };
+      img.src = primaryUrl;
     }
   },
   watch: {
