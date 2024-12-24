@@ -40,7 +40,7 @@ const routes = [
 
 // Defines routes for the application
 const router = createRouter({
-    history: createWebHistory(), // Creates web history for router
+    history: createWebHistory('/helios-sole/'), // Creates web history for router
     routes, // Passes defined routes to router instance
 })
 
