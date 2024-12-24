@@ -1,7 +1,7 @@
 
 // Function to get all carted items from every user
 const getAll = () => {
-    return fetch("http://localhost:3000/cart")
+    return fetch("https://helios-sole.onrender.com/cart")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get a user's carted items based on the user's ID
 const getUser = (id) => {
-    return fetch("http://localhost:3000/cart/users/" + id)
+    return fetch("https://helios-sole.onrender.com/cart/users/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getUser = (id) => {
 
 // Function to get a carted item based on it's cart ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/cart/" + id)
+    return fetch("https://helios-sole.onrender.com/cart/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -58,7 +58,7 @@ const getOne = (id) => {
 
 // Function to add an item to the cart
 const create = (product_id, size, quantity, price, user_id) => {
-    return fetch("http://localhost:3000/cart", {
+    return fetch("https://helios-sole.onrender.com/cart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -91,7 +91,7 @@ const create = (product_id, size, quantity, price, user_id) => {
 
 // Function to change the details about the carted item
 const edit = (id, product_id, size, quantity, price) => {
-    return fetch("http://localhost:3000/cart/" + id, {
+    return fetch("https://helios-sole.onrender.com/cart/" + id, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -125,7 +125,7 @@ const edit = (id, product_id, size, quantity, price) => {
 
 // Function to remove an item from cart
 const deleteItem = (id) => {
-    return fetch("http://localhost:3000/cart/" + id, {
+    return fetch("https://helios-sole.onrender.com/cart/" + id, {
         method: "DELETE",
     })
         .then((response) => {

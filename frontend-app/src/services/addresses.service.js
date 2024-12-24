@@ -1,7 +1,7 @@
 
 // Function to get all addresses from every user
 const getAll = () => {
-    return fetch("http://localhost:3000/addresses")
+    return fetch("https://helios-sole.onrender.com/addresses")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get a user's addresses based on the user's ID
 const getUser = (id) => {
-    return fetch("http://localhost:3000/addresses/users/" + id)
+    return fetch("https://helios-sole.onrender.com/addresses/users/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getUser = (id) => {
 
 // Function to get an address based on it's address ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/addresses/" + id)
+    return fetch("https://helios-sole.onrender.com/addresses/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -58,7 +58,7 @@ const getOne = (id) => {
 
 // Function to create an address for delivery
 const create = (first_name, last_name, addressline1, addressline2, towncity, postcode, phone_no, country, user_id) => {
-    return fetch("http://localhost:3000/addresses", {
+    return fetch("https://helios-sole.onrender.com/addresses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -95,7 +95,7 @@ const create = (first_name, last_name, addressline1, addressline2, towncity, pos
 
 // Function to edit the address details
 const edit = (first_name, last_name, addressline1, addressline2, towncity, postcode, phone_no, country, user_id) => {
-    return fetch("http://localhost:3000/addresses/" + id, {
+    return fetch("https://helios-sole.onrender.com/addresses/" + id, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -134,7 +134,7 @@ const edit = (first_name, last_name, addressline1, addressline2, towncity, postc
 
 // Function to remove the address from the user
 const deleteAddress = (id) => {
-    return fetch("http://localhost:3000/addresses/" + id, {
+    return fetch("https://helios-sole.onrender.com/addresses/" + id, {
         method: "DELETE",
     })
         .then((response) => {

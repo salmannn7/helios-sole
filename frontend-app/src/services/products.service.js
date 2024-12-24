@@ -1,7 +1,7 @@
 
 // Function to get all products
 const getAll = () => {
-    return fetch("http://localhost:3000/products")
+    return fetch("https://helios-sole.onrender.com/products")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get all products based on it's type property
 const getType = (type) => {
-    return fetch("http://localhost:3000/products/" + type)
+    return fetch("https://helios-sole.onrender.com/products/" + type)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getType = (type) => {
 
 // Function to get a product based on it's product ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/products/" + id)
+    return fetch("https://helios-sole.onrender.com/products/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();

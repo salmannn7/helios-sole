@@ -1,7 +1,7 @@
 
 // Function to get all descriptions of the products
 const getAll = () => {
-    return fetch("http://localhost:3000/descriptions")
+    return fetch("https://helios-sole.onrender.com/descriptions")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get a product's description based on the product's ID
 const getProduct = (id) => {
-    return fetch("http://localhost:3000/descriptions/products/" + id)
+    return fetch("https://helios-sole.onrender.com/descriptions/products/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getProduct = (id) => {
 
 // Function to get a product's description based on it's description ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/descriptions/" + id)
+    return fetch("https://helios-sole.onrender.com/descriptions/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -58,7 +58,7 @@ const getOne = (id) => {
 
 // Function to create a new description
 const create = (description, product_id) => {
-    return fetch("http://localhost:3000/descriptions", {
+    return fetch("https://helios-sole.onrender.com/descriptions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -88,7 +88,7 @@ const create = (description, product_id) => {
 
 // Function to delete a description
 const deleteDescription = (id) => {
-    return fetch("http://localhost:3000/descriptions/" + id, {
+    return fetch("https://helios-sole.onrender.com/descriptions/" + id, {
         method: "DELETE",
     })
         .then((response) => {

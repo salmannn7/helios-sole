@@ -1,7 +1,7 @@
 
 // Function to get all ordered items from every user
 const getAll = () => {
-    return fetch("http://localhost:3000/orders")
+    return fetch("https://helios-sole.onrender.com/orders")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get a user's ordered items based on the user's ID
 const getUser = (id) => {
-    return fetch("http://localhost:3000/orders/users/" + id)
+    return fetch("https://helios-sole.onrender.com/orders/users/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getUser = (id) => {
 
 // Function to get a group of ordered items based on it's grouping (order number)
 const getGroup = (grouping) => {
-    return fetch("http://localhost:3000/orders/groups/" + grouping)
+    return fetch("https://helios-sole.onrender.com/orders/groups/" + grouping)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -58,7 +58,7 @@ const getGroup = (grouping) => {
 
 // Function to get an ordered item based on it's order ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/orders/" + id)
+    return fetch("https://helios-sole.onrender.com/orders/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -77,7 +77,7 @@ const getOne = (id) => {
 
 // Function to order an item
 const create = (product_id, size, quantity, price, delivery, card_id, address_id, user_id, grouping) => {
-    return fetch("http://localhost:3000/orders", {
+    return fetch("https://helios-sole.onrender.com/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -114,7 +114,7 @@ const create = (product_id, size, quantity, price, delivery, card_id, address_id
 
 // Function to edit the ordered item's details
 const edit = (id, product_id, size, quantity, price) => {
-    return fetch("http://localhost:3000/orders/" + id, {
+    return fetch("https://helios-sole.onrender.com/orders/" + id, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -148,7 +148,7 @@ const edit = (id, product_id, size, quantity, price) => {
 
 // Function to delete the ordered item
 const deleteOrder = (id) => {
-    return fetch("http://localhost:3000/orders/" + id, {
+    return fetch("https://helios-sole.onrender.com/orders/" + id, {
         method: "DELETE",
     })
         .then((response) => {

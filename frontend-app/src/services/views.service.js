@@ -1,7 +1,7 @@
 
 // Function to get all views from every product
 const getAll = () => {
-    return fetch("http://localhost:3000/views")
+    return fetch("https://helios-sole.onrender.com/views")
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -20,7 +20,7 @@ const getAll = () => {
 
 // Function to get a user's viewed products based on the user's ID
 const getUser = (id) => {
-    return fetch("http://localhost:3000/views/users/" + id)
+    return fetch("https://helios-sole.onrender.com/views/users/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -39,7 +39,7 @@ const getUser = (id) => {
 
 // Function to get a product's views based on it's product ID
 const getProduct = (id) => {
-    return fetch("http://localhost:3000/views/products/" + id)
+    return fetch("https://helios-sole.onrender.com/views/products/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -58,7 +58,7 @@ const getProduct = (id) => {
 
 // Function to get a product view based on it's view ID
 const getOne = (id) => {
-    return fetch("http://localhost:3000/views/" + id)
+    return fetch("https://helios-sole.onrender.com/views/" + id)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -77,7 +77,7 @@ const getOne = (id) => {
 
 // Function to add a view to the product
 const create = (product_id, amount, user_id) => {
-    return fetch("http://localhost:3000/views", {
+    return fetch("https://helios-sole.onrender.com/views", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -108,7 +108,7 @@ const create = (product_id, amount, user_id) => {
 
 // Function to change the amount of views the product has by a user
 const edit = (id, amount) => {
-    return fetch("http://localhost:3000/views/" + id, {
+    return fetch("https://helios-sole.onrender.com/views/" + id, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -139,7 +139,7 @@ const edit = (id, amount) => {
 
 // Function to delete the user's views on a product
 const deleteView = (id) => {
-    return fetch("http://localhost:3000/views/" + id, {
+    return fetch("https://helios-sole.onrender.com/views/" + id, {
         method: "DELETE",
     })
         .then((response) => {
